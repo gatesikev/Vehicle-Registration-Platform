@@ -38,14 +38,17 @@ const RegisterVehicle = () => {
       toast.success('Vehicle registered successfully! 🎉')
       navigate('/')
     },
-    onError: (error) => {
-      const errors = error?.response?.data?.errors
-      if (errors && Array.isArray(errors)) {
-        errors.forEach((err) => toast.error(err.message || err))
-      } else {
-        toast.error('Something went wrong. Please try again.')
-      }
-    },
+   onError: (error) => {
+  console.log('FULL ERROR:', error?.response?.data)
+  const errors = error?.response?.data?.errors
+  if (errors && Array.isArray(errors)) {
+    errors.forEach((err) => toast.error(err.message || err))
+  } else if (error?.response?.data?.message) {
+    toast.error(error.response.data.message)
+  } else {
+    toast.error('Something went wrong. Please try again.')
+  }
+},
   })
 
   const onNext = (data) => {
