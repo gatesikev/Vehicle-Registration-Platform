@@ -2,9 +2,6 @@
 
 A production-grade Vehicle Registration and Management dashboard built with React. This application allows users to view, register, edit, and manage vehicles through a dynamic, data-driven frontend connected to a live REST API.
 
-## 🌐 Live Demo
-
-[View Live Application](https://your-deployment-url.vercel.app)
 
 ## 📁 Project Structure
 ```
