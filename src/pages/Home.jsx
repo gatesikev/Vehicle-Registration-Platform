@@ -76,7 +76,7 @@ const Home = () => {
                     className="border-t hover:bg-gray-50 transition"
                   >
                     <td className="px-6 py-4 text-gray-500">{index + 1}</td>
-                    <td className="px-6 py-4 font-medium text-gray-800">{vehicle.manufacturer}</td>
+                    <td className="px-6 py-4 font-medium text-gray-800">{vehicle.manufacture}</td>
                     <td className="px-6 py-4 text-gray-600">{vehicle.model}</td>
                     <td className="px-6 py-4 text-gray-600">{vehicle.year}</td>
                     <td className="px-6 py-4">
@@ -87,13 +87,13 @@ const Home = () => {
                     <td className="px-6 py-4 text-gray-600">{vehicle.plateNumber}</td>
                     <td className="px-6 py-4">
                       <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                        vehicle.status === 'NEW'
+                        vehicle.vehicleStatus === 'NEW'
                           ? 'bg-green-100 text-green-700'
-                          : vehicle.status === 'USED'
+                          : vehicle.vehicleStatus === 'USED'
                           ? 'bg-yellow-100 text-yellow-700'
                           : 'bg-gray-100 text-gray-600'
                       }`}>
-                        {vehicle.status}
+                        {vehicle.vehicleStatus}
                       </span>
                     </td>
                     {isAuthenticated && (
