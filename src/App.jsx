@@ -1,22 +1,40 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { Toaster } from 'react-hot-toast'
+import { AuthProvider } from './context/AuthContext'
+import ProtectedRoute from './components/ProtectedRoute'
+import Navbar from './components/layout/Navbar'
+import Home from './pages/Home'
+import Login from './pages/Login'
+import Dashboard from './pages/Dashboard'
+import VehicleDetails from './pages/VehicleDetails'
+import RegisterVehicle from './pages/RegisterVehicle'
+
+const queryClient = new QueryClient()
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-    
-    <div className="flex items-center justify-center h-screen bg-blue-500">
-      <h1 className="text-white text-4xl font-bold">Tailwind is working! 🎉</h1>
-    </div>
-
-
-
-    </>
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
+        <BrowserRouter>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/dashboard" element={
+              <ProtectedRoute><Dashboard /></ProtectedRoute>
+            } />
+            <Route path="/vehicle/new" element={
+              <ProtectedRoute><RegisterVehicle /></ProtectedRoute>
+            } />
+            <Route path="/vehicle/:id" element={
+              <ProtectedRoute><VehicleDetails /></ProtectedRoute>
+            } />
+          </Routes>
+          <Toaster position="top-right" />
+        </BrowserRouter>
+      </AuthProvider>
+    </QueryClientProvider>
   )
 }
 
